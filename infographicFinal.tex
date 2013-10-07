@@ -1,0 +1,25 @@
+\documentclass[letterpaper,10pt,landscape]{article}
+\usepackage{fullpage}
+\usepackage[margin=0.15in]{geometry}
+\usepackage{graphicx,tikz,lmodern,verbatim}
+\usepackage[active,tightpage]{preview}
+\PreviewEnvironment{tikzpicture}
+\setlength\PreviewBorder{5pt}%
+\usetikzlibrary{positioning,backgrounds}
+\pagestyle{empty}
+
+\begin{document}
+\begin{center}
+	
+	\begin{tikzpicture}[scale=1.1,every node/.style={minimum size=1cm},on grid,background rectangle/.style={fill=blue!20,
+	        draw=blue!50,line width=3pt},show background rectangle]
+		\draw (0, 5) 	node {\fontfamily{ptm}\fontsize{75}{75}\bfseries\selectfont \sc{Cincinnati} };
+		\draw (0,3.9)	node {\large \sc{Compared to Ohio}};
+		\draw [thick] 	(-10,3.7) to (10,3.7);	% Drawing the line under the title
+		\draw (0, 3.5) 	node {\Large \sc{More diverse, more educated, more impoverished, and shrinking quickly}};
+		\draw (0, -5.5) node {\includegraphics[scale=1.1]{infographicTop.pdf}};
+		\draw (0, -14) 	node {Data from US Census Bureau. http://quickfacts.census.gov/qfd/states/39/3915000.html};
+	\end{tikzpicture}
+	 
+\end{center}
+\end{document}

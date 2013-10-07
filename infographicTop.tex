@@ -1,0 +1,174 @@
+% Infographic, comparing two layers
+% Author: Nick Sorrell
+% Based on diagram from Agostino De Marco, Marco Miani and Pascal Seppecher.
+% How to use this document:
+%	Below, you will see a lot of \newcommands.  Fill these values with your
+%	own.  There is a Title, Image, and Label section that you will need to
+%	change to make your own infographic.  You may notice that your image
+%	is too small, or too large - no problem, just go to that layer, find
+%	your node and increase/decrease the scale. Notice that each \node
+%	ends with a ;. And that a \fill only needs one ; for the whole block
+%	of code.
+
+% Based on diagram from Agostino De Marco from diagram byMarco Miani and Pascal Seppecher.
+\documentclass{article}
+\usepackage{tikz}
+\usepackage{verbatim}
+\usepackage[active,tightpage]{preview}
+\PreviewEnvironment{tikzpicture}
+\setlength\PreviewBorder{5pt}%
+%%%>
+\usetikzlibrary{positioning}
+\newcommand\sserifbf[1]{\textsf{{\bfseries{#1}}}}
+\newcommand{\yslant}{0.5}
+\newcommand{\xslant}{-0.6}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Fill title values with these commands
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\TLTitle}{\Large{\textbf{Cincinnati}}}
+\newcommand{\BLTitle}{\Large{\textbf{Ohio}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Fill image locations with these commands
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\TLPicOne}	{images/bwCin.png}	%TopLayer Pic 1
+\newcommand{\TLPicTwo}	{images/bizCin.png}
+\newcommand{\TLPicThree}{images/capCin.png}
+\newcommand{\TLPicFour}	{images/poorCinI.png}
+\newcommand{\TLPicFive}	{images/downCin.png}
+\newcommand{\BLPicOne}	{images/bwOhio.png}	%BottomLayer Pic 1
+\newcommand{\BLPicTwo}	{images/bizOhio.png}
+\newcommand{\BLPicThree}{images/capOhio.png}
+\newcommand{\BLPicFour}	{images/poorOhioI.png}
+\newcommand{\BLPicFive}	{images/upOH.png}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Fill label values with these commands
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\TLTextOne}		{\sserifbf{Population} \\ \sserifbf{\small (Black vs. White)} \\ \sserifbf{2010}}
+\newcommand{\TLTextTwo}		{\sserifbf{Black Owned}\\ \sserifbf{Businesses} \\ \sserifbf{2007}}
+\newcommand{\TLTextThree}	{\sserifbf{Bachelor's Degrees}\\ \sserifbf{2006-2010}}
+\newcommand{\TLTextFour}	{\sserifbf{Persons Below}\\ \sserifbf{Poverty Line}  \\ \sserifbf{2006-2010}}
+\newcommand{\TLTextFive}	{\sserifbf{Population Change} \\ \sserifbf{2000-2010}}
+\newcommand{\BLTextOne}		{}
+\newcommand{\BLTextTwo}		{}
+\newcommand{\BLTextThree}	{}
+\newcommand{\BLTextFour}	{}
+\newcommand{\BLTextFive}	{}
+
+\begin{document}
+\begin{tikzpicture}[scale=1.1,every node/.style={minimum size=1cm},on grid]
+
+	%%%%%%%%%%%%%%%%% 
+	% Bottom Layer
+	%%%%%%%%%%%%%%%%%
+	\begin{scope}[
+		yshift=-120,
+		every node/.append style={yslant=\yslant,xslant=\xslant},
+		yslant=\yslant,xslant=\xslant
+		] 
+		
+	% The lower frame:
+		\fill[white,fill opacity=.70] 	(-1.3,0) rectangle (11,4.8);		%Optional, needed for my infographic
+		\draw[black, dashed, thick] (-1.3,0) rectangle (11,4.8); 
+		
+	% Dots:
+		\draw[fill=red]  
+			(9.7,4.5)	circle (.1)		% 5th dot
+			(7.5,4.5) 	circle (.1) 	% 4th dot
+			(5,4.5) 	circle (.1) 	% 3rd dot
+			(2,4.5) 	circle (.1) 	% 2nd dot
+			(-0.5,4.5) 	circle (.1)  	% 1st dot
+		;
+		
+	% Icons: add fill=white if needed for graphics
+		\node[anchor=south,inner sep=0,xshift=-20pt,yshift=10pt,scale=1.05] at (0.3,1)
+			{\includegraphics[width=2cm]{\BLPicOne}};
+		\node[anchor=south,inner sep=0,xshift=0pt,yshift=8pt,scale=1.3] at (2.3,1)
+			{\includegraphics[width=2cm]{\BLPicTwo}};
+		\node[anchor=south,inner sep=0,xshift=-5pt,yshift=8pt,,scale=1.4] at (5.1,0.8)
+			{\includegraphics[width=2cm]{\BLPicThree}};
+		\node[anchor=south,inner sep=0,xshift=20pt,yshift=8pt,,scale=0.65] at (6.8,1)
+			{\includegraphics[width=2cm]{\BLPicFour}};
+		\node[anchor=south,inner sep=0,xshift=20pt,yshift=8pt,,scale=1.2] at (9,1)
+			{\includegraphics[width=2.5cm]{\BLPicFive}};
+	
+	% Labels:		
+		\fill[black]
+		 	(-0.2,-0.1) 	node[above=-2pt, scale=1.1] 
+				{\BLTitle}
+			(9.7,4.5)		node[below right,,xshift=-20pt,yshift=-5pt,scale=.9,text width=2.5cm,align=left]
+				{\BLTextFive}
+			(7.3,1.45) 		node[below right,,xshift=-20pt,yshift=-5pt,scale=.9,text width=2.5cm,align=left]
+				{\BLTextFour}
+			(5.0,1.2) 		node[below right,xshift=-20pt,scale=.9,text width=2cm,align=left]
+				{\BLTextThree}
+			(2.1,1.3) 		node[below right,xshift=-10pt,scale=.9,text width=2cm,align=left]
+				{\BLTextTwo}
+			(0.2,1.5) 		node[below right,xshift=-20pt,yshift=-5pt,scale=1.1,text width=2.5cm,align=left]
+				{\BLTextOne}
+		;
+	\end{scope}
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% Vertical lines for linking red dots on the 2 layers
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\draw[thick](9,6.5)		to (7,3.86);		%5th line to fifth dots
+	\draw[thick](6.3,5.1) 	to (4.8,2.76);		%4th line to fourth dots
+	\draw[thick](3.8,4) 	to (2.3,1.5);		%3rd line to third dots
+	\draw[thick](0.8,2.4) 	to (-0.7,-0.03);  	%2nd line to second dots
+	\draw[thick](-2.2,0.9) 	to (-3.2,-1.25);	%1st line to first dots
+	
+	%%%%%%%%%%%%%%%%% 
+	% Top Layer
+	%%%%%%%%%%%%%%%%%
+	\begin{scope}[
+		yshift=0,
+		every node/.append style={yslant=\yslant,xslant=\xslant},
+		yslant=\yslant,xslant=\xslant
+		]
+		
+	% The upper frame:
+		\fill[white,fill opacity=.70] 	(-3.1,0) rectangle (12,6); % Opacity
+		\draw[black, dashed, thick] 	(-3.1,0) rectangle (12,6); 
+		
+	% Red dots:
+		\draw [fill=red]
+			(10.3,2)	circle (.1)		% 5th dot
+			(7.5,2) 	circle (.1) 	% 4th dot
+			(5,2) 		circle (.1) 	% 3rd dot
+			(2,2) 		circle (.1) 	% 2nd dot
+			(-1,2) 		circle (.1)	 	% 1st dot
+		;
+		
+	% Icons:
+		\node[anchor=south,inner sep=0,xshift=-20pt,yshift=10pt] at (-0.5,2)
+			{\includegraphics[width=2cm]{\TLPicOne}};
+		\node[anchor=south,inner sep=0,xshift=0pt,yshift=8pt,scale=1.3] at (2,2)
+			{\includegraphics[width=2.5cm]{\TLPicTwo}};
+		\node[anchor=south,inner sep=0,xshift=-5pt,yshift=8pt] at (5,2)
+			{\includegraphics[width=3.0cm]{\TLPicThree}};
+		\node[anchor=south,inner sep=0,xshift=20pt,yshift=8pt,scale=0.43] at (7,2)
+			{\includegraphics[width=3.5cm]{\TLPicFour}};
+		\node[anchor=south,inner sep=0,xshift=20pt,yshift=8pt,scale=1.0] at (9.7,2)
+			{\includegraphics[width=3.5cm]{\TLPicFive}};
+
+	% Labels:
+		\fill[black]
+			(-2.5,5.5) 		node[anchor=west,inner sep=0, scale=1.1] 
+				{\TLTitle}
+			(10.3,2)		node[below right,,xshift=-20pt,yshift=-5pt,scale=.9,text width=2.5cm,align=left]
+				{\TLTextFive}
+			(7.5,2) 		node[below right,,xshift=-20pt,yshift=-5pt,scale=.9,text width=2.5cm,align=left]
+				{\TLTextFour}
+			(5.1,1.9) 		node[below right,xshift=-20pt,scale=.9,text width=2cm,align=left]
+				{\TLTextThree}
+			(1.9,1.9) 		node[below right,xshift=-10pt,scale=.9,text width=2cm,align=left]
+				{\TLTextTwo}
+			(-1.4,2) 		node[below right,xshift=-20pt,yshift=-5pt,scale=0.9,text width=2.8cm,align=left]
+				{\TLTextOne} 
+		;
+	\end{scope} 
+\end{tikzpicture}
+\end{document}
